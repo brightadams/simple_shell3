@@ -1,30 +1,30 @@
 #include "shell.h"
 
 /**
- * _eputs - prints an input string
- * @str: the string to be printed
+ * _eputs - prints an input
+ * @str: the string input
  *
  * Return: Nothing
  */
 void _eputs(char *str)
 {
-	int i = 0;
+	int j = 0;
 
 	if (!str)
 		return;
-	while (str[i] != '\0')
+	while (str[j] != '\0')
 	{
-		_eputchar(str[i]);
-		i++;
+		_eputchar(str[j]);
+		j++;
 	}
 }
 
 /**
  * _eputchar - writes the character c to stderr
- * @c: The character to print
+ * @c: The character 
  *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * Return: 1 if successful.
+ * if error, -1 is returned, and errno is set appropriately.
  */
 int _eputchar(char c)
 {
@@ -65,22 +65,22 @@ int _putfd(char c, int fd)
 }
 
 /**
- * _putsfd - prints an input string
- * @str: the string to be printed
+ * _putsfd - prints input string
+ * @str: the string input
  * @fd: the filedescriptor to write to
  *
  * Return: the number of chars put
  */
 int _putsfd(char *str, int fd)
 {
-	int i = 0;
+	int j = 0;
 
 	if (!str)
 		return (0);
 	while (*str)
 	{
-		i += _putfd(*str++, fd);
+		j += _putfd(*str++, fd);
 	}
-	return (i);
+	return (j);
 }
 

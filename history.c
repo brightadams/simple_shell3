@@ -1,27 +1,27 @@
 #include "shell.h"
 
 /**
- * get_history_file - gets the history file
- * @info: parameter struct
+ * get_history_file - gets history of the file
+ * @info: params struct
  *
- * Return: allocated string containg history file
+ * Return: allocated string containing history of the file
  */
 
 char *get_history_file(info_t *info)
 {
-	char *buf, *dir;
+	char *buffer, *dir;
 
 	dir = _getenv(info, "HOME=");
 	if (!dir)
 		return (NULL);
-	buf = malloc(sizeof(char) * (_strlen(dir) + _strlen(HIST_FILE) + 2));
-	if (!buf)
+	buffer = malloc(sizeof(char) * (_strlen(dir) + _strlen(HIST_FILE) + 2));
+	if (!buffer)
 		return (NULL);
-	buf[0] = 0;
-	_strcpy(buf, dir);
-	_strcat(buf, "/");
-	_strcat(buf, HIST_FILE);
-	return (buf);
+	buffer[0] = 0;
+	_strcpy(buffer, dir);
+	_strcat(buffer, "/");
+	_strcat(buffer, HIST_FILE);
+	return (buffer);
 }
 
 /**
@@ -33,14 +33,14 @@ char *get_history_file(info_t *info)
 int write_history(info_t *info)
 {
 	ssize_t fd;
-	char *filename = get_history_file(info);
+	char *file_name = get_history_file(info);
 	list_t *node = NULL;
 
-	if (!filename)
+	if (!file_name)
 		return (-1);
 
-	fd = open(filename, O_CREAT | O_TRUNC | O_RDWR, 0644);
-	free(filename);
+	fd = open(file_name, O_CREAT | O_TRUNC | O_RDWR, 0644);
+	free(file_name);
 	if (fd == -1)
 		return (-1);
 	for (node = info->history; node; node = node->next)
